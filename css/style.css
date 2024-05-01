@@ -1,0 +1,137 @@
+body {
+    background-color: #1e1e1e;
+}
+
+.terminal-screen-text {
+    font-weight: bold;
+}
+
+
+.terminal-window {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 800px;
+    height: 450px;
+    border-radius: 10px;
+    background-color: #0e0e0e;
+}
+
+.terminal-window #textToShow {
+    position: absolute;
+    margin: auto;
+    top: 5%;
+    left: 1%;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 12.50px;
+}
+
+.window-management-tool {
+    position: absolute;
+    margin: auto;
+    top: -100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 800px;
+    height: 30px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #3c3a3a;
+    text-align: center;
+    user-select: none;
+}
+
+div #terminalInput {
+    position: absolute;
+    margin: auto;
+    top: 95%;
+    left: 1%;
+    bottom: 0;
+    width: 790px;
+    height: 20px;
+    background-color: #0e0e0e;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 12.5px;
+    border-bottom-right-radius: 10px;
+}
+
+div #terminalInput input {
+    position: absolute;
+    margin: auto;
+    left: 35%;
+    bottom: 0;
+    width: 510px;
+    height: 20px;
+    /*background-color: #0e0e0e;*/
+    background-color: #0e0e0e;
+    border: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: #ffffff;
+}
+
+
+
+.terminal-window input::placeholder {
+    position: absolute;
+    font-size: 13px;
+    left: 5px;
+    color: #d3d3d3;
+}
+
+.terminal-window input:focus {
+    outline: none;
+}
+
+centered {
+    font-family: "Roboto", sans-serif;
+    position: relative;
+    margin: auto;
+    top: 20%;
+    color: #ffffff;
+}
+
+close-button {
+    position: absolute;
+    margin: auto;
+    top: 0%;
+    right: 0;
+    bottom: 0;
+    left: -95%;
+    width: 15px;
+    height: 15px;
+    background-color: #e64c4c;
+    border-radius: 100%;
+}
+
+hide-button {
+    position: absolute;
+    margin: auto;
+    top: 0%;
+    right: -350%;
+    bottom: 0;
+    left: -95%;
+    width: 15px;
+    height: 15px;
+    background-color: #c7a410;
+    border-radius: 100%;
+}
+
+expand-button {
+    position: absolute;
+    margin: auto;
+    top: 0%;
+    right: -350%;
+    bottom: 0;
+    left: -95%;
+    width: 15px;
+    height: 15px;
+    background-color: #08c70c;
+    border-radius: 100%;
+}
