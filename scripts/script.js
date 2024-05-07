@@ -1,7 +1,8 @@
 let initialisation = true;
 
 document.getElementById("cmd-prompt").onkeydown = function(e) {
-    if(e.code == 'Enter') {
+    console.log(e.code);
+    if(e.code == 'Enter' || e.code == "NumpadEnter") {
         executeCommand(document.getElementById("cmd-prompt").value)
         document.getElementById("cmd-prompt").value = ''
     }
@@ -28,6 +29,7 @@ if(initialisation) {
     this.writeLine("Welcome to LouisonOS")
     this.writeLine(`Today's date: ${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()} ${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getMilliseconds()}`)
     this.writeLine("For more information type 'help' or '?'")
+    this.writeLine(colorizeText("<color #ffffff>En blanc, <color #000000>en noir"));
 
 }
 
@@ -94,6 +96,16 @@ function executeCommand(str) {
         writeLine(" ")
         writeLine("Comme indiqué dans la commande 'tellmeeverything', je suis favorable aux stages me mettant en relation avec les métiers")
         writeLine("ㅤㅤ• Développeur Web")
+    } else if(str.startsWith("questions")) {
+        const args = str.split(" ");
+        if(args.length == 1) {
+            writeLine("Si vous souhaitez obtenir les réponses en lien avec l'HTML exécutez 'questions html'")
+            return;
+        }
+        if(args[1].toLowerCase() === "html") {
+            writeLine("HTML n'est pas un langage de programmation mais de balisage.")
+            writeLine("Pour exemple")
+        }
     }
 
 }
@@ -128,33 +140,44 @@ function splitString(inputString) {
 
 
 function colorizeText(text) {
-    // Remplace les balises <color> par des balises <span> avec la couleur spécifiée
-    text = text.replace(/<color\((#[a-fA-F0-9]{6})\)>(.*?)<\/color>/g, '<span class="terminal-screen-text" style="color: $1;">$2</span>');
-
-    return text;
+    return text
+        .replaceAll("§1", '<span style="color: #041c74">')
+        .replaceAll("§2", '<span style="color: #14741a">')
+        .replaceAll("§3", '<span style="color: #275784">')
+        .replaceAll("§4", '<span style="color: #780202">')
+        .replaceAll("§5", '<span style="color: #a71098">')
+        .replaceAll("§6", '<span style="color: #fd9c00">')
+        .replaceAll("§7", '<span style="color: #a7a7a7">')
+        .replaceAll("§8", '<span style="color: #434343">')
+        .replaceAll("§9", "<span style='color: #4a2dda'>")
+        .replaceAll("§a", "<span style='color: #15ff16'>")
+        .replaceAll("§a", "<span style='color: #27b2fd'>")
+        .replaceAll("§c", "<span style='color: #df4646'>")
+        .replaceAll("§d", "<span style='color: #ff00d5'>")
+        .replaceAll("§e", "<span style='color: #ffd400'>")
+        .replaceAll("§f", "<span style='color: #ffffff'>")
+        .replaceAll("§l", "<b>")
 }
-
-
 function writeLine(text) {
     if (lines.length == 21) {
         lines.splice(0, 1);
     }
 
-    text.replaceAll("%nl%", " "*maxLettersInLine)
+    const finalText = text.replaceAll("%nl%", " "*maxLettersInLine)
 
-    if(text.length > maxLettersInLine){
-        for(line in splitString(text)) {
-            writeLine(splitString(text)[line]);
+    if(finalText.length > maxLettersInLine){
+        for(line in splitString(finalText)) {
+            writeLine(splitString(finalText)[line]);
         }
         return;
     }
 
-    lines.push(text);
+    lines.push(colorizeText(finalText));
 
     document.getElementById("textToShow").textContent = ''
 
     lines.forEach(line => {
-        document.getElementById("textToShow").innerHTML += line + "<br />"
+        document.getElementById("textToShow").innerHTML += colorizeText(line) + "<br />"
     })
 
 }
